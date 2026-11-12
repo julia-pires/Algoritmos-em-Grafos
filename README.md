@@ -2,9 +2,6 @@
 
 Trabalho de Algoritmos em Grafos — Ciência da Computação, UEM.
 
-## BFS — passo 6
-
-Requer Python 3, sem bibliotecas adicionais. Execute na pasta do repositório:
 
 ```console
 python main.py bfs dados/teste_pequeno.txt
@@ -16,10 +13,6 @@ para todos os vértices. Consideramos que o grafo é conectado; uma única busca
 alcança todos os vértices. As distâncias e os caminhos partem da mesma origem.
 
 Algoritmos aceitos: `bfs`, `dfs`, `topologica` e `mst`.
-DFS, ordenação topológica e MST ainda não estão implementados.
-A ordenação topológica exigirá adaptar a leitura para grafos orientados.
-O programa recebe tudo pela linha de comando, sem perguntas interativas.
-`main.py` usa apenas `sys` da biblioteca padrão para acessar esses argumentos.
 
 ### Arquivos
 
