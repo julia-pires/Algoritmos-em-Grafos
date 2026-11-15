@@ -2,6 +2,7 @@ import sys
 
 from bfs import executar_bfs
 from grafo import ler_grafo
+from kruskal import executar_kruskal
 
 
 def main():
@@ -32,7 +33,7 @@ def main():
             print("Ordenação topológica ainda não implementada.")
 
         if algoritmo == "mst":
-            print("MST ainda não implementada.")
+            executar_kruskal(arquivo)
 
     except (OSError, ValueError) as erro:
         print(f"Erro: {erro}")
