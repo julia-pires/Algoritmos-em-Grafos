@@ -16,7 +16,7 @@ def ler_grafo(arquivo):
                 grafo.setdefault(campos[0], {})
                 continue
             if len(campos) != 3:
-                raise ValueError(f"Linha {numero}: use origem destino peso.")
+                raise ValueError(f"Linha {numero}: use o padrão origem destino peso.")
             origem, destino, texto_peso = campos
             try:
                 peso = float(texto_peso.replace(",", "."))

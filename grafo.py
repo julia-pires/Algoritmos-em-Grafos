@@ -2,7 +2,13 @@
 
 
 def ler_grafo(arquivo):
+    
     """Lê arestas 'origem destino peso' e retorna lista de adjacência por nome."""
+    
+    # Inicializa o grafo como um dicionário de dicionários. 
+    # "grafo" é o dicionário externo. Possui como chaves os nomes dos vértices e como valores os dicionários internos.
+    # Cada dicionário interno representa a lista de adjascência do vértice, possuindo como chaves os nomes dos vértices 
+    # vizinhos e como valores os pesos das arestas.
     grafo = {}
     with open(arquivo, encoding="utf-8-sig") as entrada:
         for numero, linha in enumerate(entrada, start=1):
@@ -13,7 +19,7 @@ def ler_grafo(arquivo):
                 grafo.setdefault(campos[0], {})
                 continue
             if len(campos) != 3:
-                raise ValueError(f"Linha {numero}: use origem destino peso.")
+                raise ValueError(f"Linha {numero}: use o padrão origem destino peso.")
             origem, destino, texto_peso = campos
             try:
                 peso = float(texto_peso.replace(",", "."))
