@@ -2,27 +2,37 @@
 
 Trabalho de Algoritmos em Grafos — Ciência da Computação, UEM.
 
-
 ```console
 python main.py bfs dados/teste_pequeno.txt
+python main.py dfs dados/teste_pequeno.txt
 python main.py topologica dados/teste_topologica.txt
+python main.py mst dados/teste_pequeno.txt
 ```
 
 Formato: `python main.py algoritmo arquivo.txt`.
-O BFS escolhe o menor identificador como origem e mostra a tabela e os caminhos
-para todos os vértices. Consideramos que o grafo é conectado; uma única busca
-alcança todos os vértices. As distâncias e os caminhos partem da mesma origem.
 
 Algoritmos aceitos: `bfs`, `dfs`, `topologica` e `mst`.
+
+- `bfs`: escolhe o menor identificador como origem e mostra a tabela e os caminhos
+  para todos os vértices. Consideramos que o grafo é conectado; uma única busca
+  alcança todos os vértices.
+- `dfs`: mostra cor, pai, tempos de descoberta e finalização e componente de cada
+  vértice, além do número de componentes e das arestas de retorno (ciclos).
+- `topologica`: lê o grafo como orientado e mostra a ordem topológica, ou as
+  arestas de retorno se houver ciclo.
+- `mst`: roda o Kruskal e mostra as arestas da árvore geradora mínima e o peso total.
 
 ### Arquivos
 
 - `main.py`: entrada do programa, com um `if` para cada algoritmo.
-- `grafo.py`: leitura do grafo, compartilhada pelos algoritmos.
+- `grafo.py`: leitura do grafo, compartilhada pelos algoritmos. Também tem funções
+  para converter para índices e montar a matriz de adjacência.
 - `bfs.py`: busca em largura, reconstrução e exibição dos resultados.
+- `dfs.py`: busca em profundidade, com detecção de ciclos e de componentes.
 - `topologica.py`: ordenação topológica, feita com uma busca em profundidade.
+- `kruskal.py`: árvore geradora mínima, com união por tamanho e compressão de caminho.
 - `dados/`: grafos de teste e gabaritos.
-- `test_bfs.py`: testes automáticos do BFS.
+- `grafo_backup.py`: versão antiga da leitura do grafo. Nenhum arquivo usa ele.
 
 ### Entrada
 
@@ -41,19 +51,46 @@ Na ordenação topológica o grafo é orientado: a linha `origem destino peso` v
 só para a aresta `origem -> destino`, e o grafo precisa ser acíclico.
 Nos outros algoritmos ele continua não orientado.
 
+### Arquivos de dados
+
+- `teste_pequeno.txt`: grafo não orientado com 12 vértices e um ciclo. Serve para
+  `bfs`, `dfs` e `mst`.
+- `teste_topologica.txt`: o mesmo grafo, mas com a aresta `M057 M068` no lugar de
+  `M068 M057`. Assim, lido como orientado, ele não tem ciclo.
+- `arestas_shroom_city.txt`: grafo grande, com 394 linhas.
+- `gabarito_*.txt`: resultado esperado de cada algoritmo. Os de `bfs`, `dfs` e `mst` valem
+  para o `teste_pequeno.txt`; o de `topologica` vale para o `teste_topologica.txt`.
+
+Se rodar `topologica` com o `teste_pequeno.txt`, o programa avisa que existe ciclo
+(`M068 -> M057`) e não mostra ordem. É o comportamento esperado.
+
 ### Funções
 
 - `ler_grafo`: lê o arquivo e monta a lista de adjacência. Com `orientado=True`,
-  guarda cada aresta só no sentido origem -> destino.
+  guarda cada aresta só no sentido origem -> destino, mas o destino entra no
+  grafo mesmo que nenhuma aresta saia dele.
 - `bfs`: calcula as distâncias e os predecessores usando uma fila.
 - `executar_bfs`: escolhe a origem, chama o BFS e mostra os resultados.
 - `reconstruir_caminho`: segue os predecessores e inverte a sequência.
 - `exibir_tabela`: imprime as distâncias e os predecessores.
 - `exibir_caminho`: imprime o caminho e seu tamanho.
+- `mapear_vertices`, `lista_adjacencia_indices` e `matriz_adjacencia` (em `grafo.py`): convertem
+  o grafo para índices e montam a matriz de adjacência. Só o `python grafo.py arquivo.txt` usa.
+- `construir_vertices` (em `dfs.py` e `topologica.py`): transforma a lista de adjacência em
+  objetos `Vertice`, com as arestas em ordem crescente de identificador.
+- `dfs`: faz a busca em todos os vértices e devolve o número de componentes e os ciclos.
+- `dfs_visita`: visita um vértice, marca os tempos e procura arestas de retorno.
+- `executar_dfs`: monta os vértices, chama o DFS e mostra os resultados.
 - `ordenacao_topologica`: faz o DFS em todos os vértices e devolve a ordem e os ciclos.
 - `topologica_visita`: visita um vértice, marca os tempos e o guarda ao finalizar.
-- `executar_topologica`: lê o grafo como orientado, chama a ordenação e mostra os resultados.
-- `main` (em `main.py`): recebe as escolhas e coordena a execução.
+- `executar_topologica`: recebe o grafo orientado, chama a ordenação e mostra os resultados.
+- `kruskal`: ordena as arestas por peso e junta as que não formam ciclo.
+- `executar_kruskal`: lê o grafo, chama o Kruskal e mostra os resultados.
+- `main` (em `main.py`): recebe as escolhas, lê o grafo (orientado só na topológica),
+  confere se ele não está vazio e chama o algoritmo. O `mst` é a exceção: recebe o
+  nome do arquivo e lê o grafo por conta própria.
+
+### BFS
 
 O BFS visita os vizinhos pelo menor identificador. A distância conta arestas,
 sem somar pesos. `None` indica distância indefinida ou ausência de predecessor;
@@ -65,30 +102,63 @@ O arquivo `bfs.py` não usa imports.
 A reconstrução deve receber os predecessores da busca feita com a mesma origem.
 Retorna `[]` quando não existe caminho e `[origem]` quando origem e destino são iguais.
 
+### DFS
+
+Os vértices e os vizinhos são visitados pelo menor identificador (comparação de
+texto, não de número), então o resultado é sempre o mesmo. Cada vértice branco que sobra no laço principal
+começa um novo componente. Se um vizinho está `Cinza` e não é o pai, existe um
+ciclo, e a aresta é guardada como aresta de retorno.
+
+### Ordenação topológica
+
 A ordem topológica é a ordem inversa de finalização do DFS: quem termina por
-último vem primeiro. Os vértices e os vizinhos são visitados pelo menor
-identificador, então o resultado é sempre o mesmo. Se uma aresta aponta para um
-vértice que ainda está sendo explorado (`Cinza`), existe um ciclo e não há
-ordenação possível. Nesse caso o programa mostra as arestas de retorno.
-No `teste_pequeno.txt`, a aresta `M057 M068` está nesse sentido para o grafo
-não ter ciclo.
+último vem primeiro. Se uma aresta aponta para um vértice que ainda está sendo
+explorado (`Cinza`), existe um ciclo e não há ordenação possível. Nesse caso o
+programa mostra as arestas de retorno. Como o grafo é orientado, aqui não há
+exceção para o pai.
+
+Uma aresta para um vértice já finalizado (`Preto`) é ignorada: o vértice não é
+visitado de novo e o pai dele continua sendo quem o descobriu primeiro. No
+`teste_topologica.txt`, o M068 tem pai M081 porque chega por ali antes de o M057
+olhar a aresta `M057 M068`. A ordem continua certa, pois o M068 termina antes do M057.
+
+### Kruskal
+
+Cada aresta aparece uma vez (a com origem menor que o destino) e todas são
+ordenadas por peso. Uma aresta só entra se ligar dois conjuntos diferentes.
+Se o grafo for desconexo, o resultado é uma floresta geradora mínima.
+
+No `teste_pequeno.txt` o peso total é sempre 9.50, mas as arestas podem mudar em
+caso de empate. O gabarito foi feito com desempate por identificador.
 
 ### Verificação
 
+Rode cada algoritmo e compare com o gabarito correspondente em `dados/`:
+
 ```console
-python -m unittest -v
+python main.py bfs dados/teste_pequeno.txt
+python main.py dfs dados/teste_pequeno.txt
+python main.py topologica dados/teste_topologica.txt
+python main.py mst dados/teste_pequeno.txt
 ```
 
-O teste compara as distâncias e os predecessores com `dados/gabarito_bfs.txt`,
-que contém o gabarito da planilha com as colunas separadas por espaços.
-Também verifica desempate, ciclos, vértices desconectados e vértices inexistentes.
-Para M086, o resultado esperado é:
+Para o BFS, o caminho esperado até M086 é:
 
 ```text
 M057 -> M058 -> M059 -> M069 -> M083 -> M084 -> M085 -> M086
 Distância: 7 arestas
 ```
 
-Os arquivos `gabarito_dfs.txt`, `gabarito_topologica.txt` e `gabarito_mst.txt`
-trazem o resultado esperado para `dados/teste_pequeno.txt`. Na árvore geradora
-mínima o peso total é sempre 9.50, mas as arestas podem mudar em caso de empate.
+No DFS, o gabarito tem 1 componente e a aresta de retorno `M068 -> M057`.
+Na topológica, os tempos de descoberta e finalização são os mesmos do DFS, e a
+ordem esperada é:
+
+```text
+M057 -> M058 -> M059 -> M069 -> M083 -> M084 -> M085 -> M086 -> M070 -> M082 -> M081 -> M068
+```
+
+Nos erros (arquivo inexistente, linha mal formatada, peso inválido), o programa
+mostra `Erro: ...` e termina com código 1. Um arquivo vazio dá erro no `bfs`, no
+`dfs` e na `topologica`; no `mst` ele apenas mostra "grafo vazio".
+
+Não há testes automáticos: `python -m unittest` não encontra nenhum teste.
