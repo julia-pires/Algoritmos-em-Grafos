@@ -4,6 +4,7 @@ from bfs import executar_bfs
 from dfs import executar_dfs
 from grafo import ler_grafo
 from kruskal import executar_kruskal
+from topologica import executar_topologica
 
 
 def main():
@@ -41,7 +42,11 @@ def main():
             executar_dfs(grafo)
 
         if algoritmo == "topologica":
-            print("Ordenação topológica ainda não implementada.")
+            grafo = ler_grafo(arquivo, orientado=True)
+            if not grafo:
+                raise ValueError("O arquivo do grafo está vazio.")
+            
+            executar_topologica(grafo)
 
         if algoritmo == "mst":
             executar_kruskal(arquivo)
