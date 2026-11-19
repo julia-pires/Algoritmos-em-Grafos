@@ -1,0 +1,15 @@
+vertice pai descoberto finalizado componente
+M057 NIL 1 24 1
+M058 M057 2 23 1
+M059 M058 3 22 1
+M068 M081 8 9 1
+M069 M059 4 21 1
+M070 M085 14 15 1
+M081 M082 7 10 1
+M082 M083 6 11 1
+M083 M069 5 20 1
+M084 M083 12 19 1
+M085 M084 13 18 1
+M086 M085 16 17 1
+# componentes conexos: 1
+# aresta de retorno (ciclo): M068 -> M057

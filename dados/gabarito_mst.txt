@@ -1,0 +1,17 @@
+origem destino peso
+M058 M059 0.75
+M059 M069 0.75
+M081 M082 0.75
+M082 M083 0.75
+M083 M084 0.75
+M084 M085 0.75
+M057 M058 1.00
+M057 M068 1.00
+M068 M081 1.00
+M070 M085 1.00
+M085 M086 1.00
+# peso total: 9.50
+# componentes conexos: 1 (árvore geradora mínima, 11 arestas)
+# O peso total é único, mas a árvore não: o ciclo tem 4 arestas de peso 1.00
+# (M057-M058, M057-M068, M068-M081, M069-M083) e qualquer uma delas pode ficar de fora.
+# Acima, o Kruskal com desempate por identificador deixa de fora M069-M083.
