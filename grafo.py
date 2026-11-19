@@ -1,7 +1,7 @@
 """Leitura e representações de grafos não orientados e ponderados."""
 
 
-def ler_grafo(arquivo):
+def ler_grafo(arquivo, orientado=False):
     
     """Lê arestas 'origem destino peso' e retorna lista de adjacência por nome."""
     
@@ -26,7 +26,8 @@ def ler_grafo(arquivo):
             except ValueError as erro:
                 raise ValueError(f"Linha {numero}: peso inválido.") from erro
             grafo.setdefault(origem, {})[destino] = peso
-            grafo.setdefault(destino, {})[origem] = peso
+            if not orientado:
+                grafo.setdefault(destino, {})[origem] = peso
     return grafo
 
 
