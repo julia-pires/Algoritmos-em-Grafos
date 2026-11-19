@@ -1,4 +1,3 @@
-
 """Algoritmo de Kruskal para árvore geradora mínima."""
 
 from grafo import ler_grafo
@@ -59,7 +58,7 @@ def executar_kruskal(arquivo):
 
     selecionadas, peso_total, componentes = kruskal(grafo)
 
-    print("\n=== ALGORITMO DE KRUSKAL ===")
+    print("\n ALGORITMO DE KRUSKAL ")
     print(f"Vértices: {len(grafo)}")
     print(f"Arestas selecionadas: {len(selecionadas)}")
 
