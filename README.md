@@ -140,6 +140,10 @@ python main.py bfs dados/teste_pequeno.txt
 python main.py dfs dados/teste_pequeno.txt
 python main.py topologica dados/teste_topologica.txt
 python main.py mst dados/teste_pequeno.txt
+python main.py bfs dados/arestas_shroom_city.txt
+python main.py dfs dados/arestas_shroom_city.txt
+python main.py mst dados/arestas_shroom_city.txt
+python main.py topologica dados/teste_pequeno.txt
 ```
 
 Para o BFS, o caminho esperado até M086 é:
