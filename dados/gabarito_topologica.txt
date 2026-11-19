@@ -11,8 +11,3 @@ M083 M069 5 20
 M084 M083 12 19
 M085 M084 13 18
 M086 M085 16 17
-# ordem topológica: M057 M058 M059 M069 M083 M084 M085 M086 M070 M082 M081 M068
-# O grafo é lido como orientado e é acíclico, então não há arestas de retorno.
-# Há mais de uma ordem válida; esta é a do DFS com desempate por identificador.
-# Requer a linha 8 de teste_pequeno.txt como "M057 M068 1.00" (no original era "M068 M057 1.00",
-# que fecha um ciclo quando o grafo é orientado).

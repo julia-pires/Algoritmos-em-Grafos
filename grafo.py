@@ -26,8 +26,9 @@ def ler_grafo(arquivo, orientado=False):
             except ValueError as erro:
                 raise ValueError(f"Linha {numero}: peso inválido.") from erro
             grafo.setdefault(origem, {})[destino] = peso
+            grafo.setdefault(destino, {})
             if not orientado:
-                grafo.setdefault(destino, {})[origem] = peso
+                grafo[destino][origem] = peso
     return grafo
 
 

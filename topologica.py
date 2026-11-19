@@ -1,6 +1,5 @@
 from dataclasses import dataclass, field
 from typing import Dict, List
-from grafo import ler_grafo
 
 # Define a estrutura de uma aresta. Contém o vértice de origem, o vértice de destino e peso da aresta.
 @dataclass
@@ -19,7 +18,7 @@ class Vertice:
   finalizado: int = 0
   arestas: List[Aresta] = field(default_factory=list)
 
-# Converte o grafo lido por ler_grafo_orientado (dicionário de dicionários) em um dicionário de Vertice.
+# Converte o grafo lido em um dicionário de Vertice.
 def construir_vertices(grafo: Dict[str, Dict[str, float]]) -> Dict[str, Vertice]:
     vertices = {id: Vertice(id=id) for id in sorted(grafo)}
     
@@ -77,12 +76,8 @@ def topologica_visita(grafo: Dict[str, Vertice], u: Vertice, tempo: List[int], f
     finalizados.append(u.id)
 
 
-# Lê o arquivo, executa a ordenação topológica e imprime os resultados.
-def executar_topologica(arquivo: str) -> None:
-    grafo_lido = ler_grafo(arquivo, orientado=True)
-    if not grafo_lido:
-        raise ValueError("O arquivo do grafo está vazio.")
-
+# Executa a ordenação topológica no grafo orientado lido por ler_grafo e imprime os resultados.
+def executar_topologica(grafo_lido: Dict[str, Dict[str, float]]) -> None:
     grafo = construir_vertices(grafo_lido)
     ordem, ciclos = ordenacao_topologica(grafo)
 
