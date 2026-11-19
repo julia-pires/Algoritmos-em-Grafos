@@ -1,9 +1,9 @@
 
-=== ALGORITMO DE KRUSKAL ===
-VÚrtices: 12
+ ALGORITMO DE KRUSKAL 
+Vértices: 12
 Arestas selecionadas: 11
 
-Arestas da ßrvore/floresta geradora mÝnima:
+Arestas da árvore/floresta geradora mínima:
 M058 -- M059 | peso: 0.75
 M059 -- M069 | peso: 0.75
 M081 -- M082 | peso: 0.75
@@ -18,4 +18,4 @@ M085 -- M086 | peso: 1.00
 
 Peso total: 9.50
 Componentes conexos: 1
-Resultado: ßrvore geradora mÝnima.
+Resultado: árvore geradora mínima.

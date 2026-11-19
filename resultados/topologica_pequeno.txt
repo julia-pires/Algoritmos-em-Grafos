@@ -1,0 +1,15 @@
+Vértice: M057 | Cor: Preto | Pai: None | Descoberto: 1 | Finalizado: 24
+Vértice: M058 | Cor: Preto | Pai: M057 | Descoberto: 2 | Finalizado: 23
+Vértice: M059 | Cor: Preto | Pai: M058 | Descoberto: 3 | Finalizado: 22
+Vértice: M068 | Cor: Preto | Pai: M081 | Descoberto: 8 | Finalizado: 9
+Vértice: M069 | Cor: Preto | Pai: M059 | Descoberto: 4 | Finalizado: 21
+Vértice: M070 | Cor: Preto | Pai: M085 | Descoberto: 14 | Finalizado: 15
+Vértice: M081 | Cor: Preto | Pai: M082 | Descoberto: 7 | Finalizado: 10
+Vértice: M082 | Cor: Preto | Pai: M083 | Descoberto: 6 | Finalizado: 11
+Vértice: M083 | Cor: Preto | Pai: M069 | Descoberto: 5 | Finalizado: 20
+Vértice: M084 | Cor: Preto | Pai: M083 | Descoberto: 12 | Finalizado: 19
+Vértice: M085 | Cor: Preto | Pai: M084 | Descoberto: 13 | Finalizado: 18
+Vértice: M086 | Cor: Preto | Pai: M085 | Descoberto: 16 | Finalizado: 17
+
+Ordenação topológica:
+  M057 -> M058 -> M059 -> M069 -> M083 -> M084 -> M085 -> M086 -> M070 -> M082 -> M081 -> M068

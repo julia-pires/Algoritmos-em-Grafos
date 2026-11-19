@@ -32,7 +32,6 @@ Algoritmos aceitos: `bfs`, `dfs`, `topologica` e `mst`.
 - `topologica.py`: ordenação topológica, feita com uma busca em profundidade.
 - `kruskal.py`: árvore geradora mínima, com união por tamanho e compressão de caminho.
 - `dados/`: grafos de teste e gabaritos.
-- `grafo_backup.py`: versão antiga da leitura do grafo. Nenhum arquivo usa ele.
 
 ### Entrada
 
@@ -43,8 +42,8 @@ M057 M058 1.00
 M058 M059 0.75
 ```
 
-Os pesos aceitam ponto ou vírgula. Uma linha com apenas um identificador
-representa um vértice isolado. Linhas vazias e comentários com `#` são ignorados.
+Use ponto como separador decimal nos pesos (ex.: `0.75`).
+Uma linha com apenas um identificador representa um vértice isolado. Linhas vazias e comentários com `#` são ignorados.
 A representação é uma lista de adjacência: `grafo[origem][destino] = peso`.
 
 Na ordenação topológica o grafo é orientado: a linha `origem destino peso` vale
@@ -166,3 +165,13 @@ mostra `Erro: ...` e termina com código 1. Um arquivo vazio dá erro no `bfs`, 
 `dfs` e na `topologica`; no `mst` ele apenas mostra "grafo vazio".
 
 Não há testes automáticos: `python -m unittest` não encontra nenhum teste.
+
+### Resultados
+
+Para salvar a saída do terminal em um arquivo, execute na raiz do repositório:
+
+```console
+python main.py bfs dados/teste_pequeno.txt > resultados/bfs_pequeno.txt
+```
+
+O operador `>` cria o arquivo de saída ou sobrescreve seu conteúdo se ele já existir.

@@ -1,6 +1,6 @@
 
 Origem: M057
-VÚrtice     DistÔncia   Predecessor
+Vértice     Distância   Predecessor
 M057        0           NIL
 M058        1           M057
 M059        2           M058
@@ -15,37 +15,37 @@ M085        6           M084
 M086        7           M085
 
 Caminho: M057
-DistÔncia: 0 arestas
+Distância: 0 arestas
 
 Caminho: M057 -> M058
-DistÔncia: 1 arestas
+Distância: 1 arestas
 
 Caminho: M057 -> M058 -> M059
-DistÔncia: 2 arestas
+Distância: 2 arestas
 
 Caminho: M057 -> M068
-DistÔncia: 1 arestas
+Distância: 1 arestas
 
 Caminho: M057 -> M058 -> M059 -> M069
-DistÔncia: 3 arestas
+Distância: 3 arestas
 
 Caminho: M057 -> M058 -> M059 -> M069 -> M083 -> M084 -> M085 -> M070
-DistÔncia: 7 arestas
+Distância: 7 arestas
 
 Caminho: M057 -> M068 -> M081
-DistÔncia: 2 arestas
+Distância: 2 arestas
 
 Caminho: M057 -> M068 -> M081 -> M082
-DistÔncia: 3 arestas
+Distância: 3 arestas
 
 Caminho: M057 -> M058 -> M059 -> M069 -> M083
-DistÔncia: 4 arestas
+Distância: 4 arestas
 
 Caminho: M057 -> M058 -> M059 -> M069 -> M083 -> M084
-DistÔncia: 5 arestas
+Distância: 5 arestas
 
 Caminho: M057 -> M058 -> M059 -> M069 -> M083 -> M084 -> M085
-DistÔncia: 6 arestas
+Distância: 6 arestas
 
 Caminho: M057 -> M058 -> M059 -> M069 -> M083 -> M084 -> M085 -> M086
-DistÔncia: 7 arestas
+Distância: 7 arestas
